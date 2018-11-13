@@ -237,7 +237,7 @@ if __name__ == "__main__":
     parser.add_argument("--output-size", type=int, nargs=2, default=(75, 75), help="size of output image")
     parser.add_argument("--image-size", type=int, nargs=2, default=(224, 224), help="size of image for network (important for zoom mode)")
     parser.add_argument("--enlarge-region", type=int, nargs=4, default=(0, 0, 0, 0), help="number of pixels template image shall be enlarged by")
-    parser.add_argument("--base-bboxes", help="base bboxes are used to determine reasonabele sizes of bboxes for sheep pasting, please supply a apth to a json file with all bboxes you want to use")
+    parser.add_argument("--base-bboxes", help="base bboxes are used to determine reasonabele sizes of bboxes for sheep pasting, please supply a path to a json file with all bboxes you want to use")
     parser.add_argument("--zoom-mode", action='store_true', default=False, help="create samples in zoom mode, meaning that stamp is placed on image and then a random zoom is cropped from the image")
 
     args = parser.parse_args()

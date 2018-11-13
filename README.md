@@ -1,4 +1,4 @@
-# LoANs
+# LoANs (Under Construction)
 
 Code for the AMV18 Paper "LoANs: Weakly Supervised Object Detection with Localizer Assessor Networks".
 You can read a Preprint on [Arxiv (TODO)](TODO).
@@ -49,7 +49,7 @@ We will need to prepare two kinds of data for training the model.
 As the overall model consists of two independent neural networks, we
 need training data for each of these networks.
 
-### Train Data for training the localizer
+### Train Data for training the Localizer
 
 Getting the data for the localizer is fairly easy. You basically have to
 go to YouTube and find some figure skating videos.
@@ -83,7 +83,56 @@ dimension of 512px (mainly useful for saving space and speeding up the training
 later on)
 ```
 
-The directory `training_data/localizer` will contain a subdirectory for each analyzed video
+The directory `training_data/localizer` will contain a subdirectory for each video
 and also a file `gt.csv` that lists all extracted images.
 
+This concludes this section, as there is nothing more to do for the localizer.
 
+### Train Data for training the Assessor
+
+Getting and preparing the data for training the Assessor is nearly as easy as getting
+the data for the localizer.
+You need some background images and also some template images.
+Let's start with getting the background images. In our case we are looking at figure skaters.
+Figure skating mostly takes place in ice arenas and therefore we will use images of ice arenas
+that we can find via image search. We gathered `8` different background images that you can
+download [here](https://bartzi.de/research/loans).
+
+Once we have the background images we just need some template images. A template image is
+a view of the object we want to localize that only contains the object, or in simpler words
+just the object cropped from an image without any background. We will need different views
+of the object in order to successfully train a model. You can now search the internet for images
+of figure skaters or just take the ones we already prepared and that you can find
+[here](https://bartzi.de/research/loans).
+
+The next step is to use the gathered images to create the actual dataset.
+In order to create this dataset we will use the script `datasets/sheep/paste_and_crop_sheep.py`.
+We assume that the background images are in the directory `train_data/assessor/backgrounds`
+and the template images in the directory `train_data/assessor/templates`. We want to save
+the generated dataset to `train_data/assessor/dataset`.
+
+Let's have a look at how we can use the script:
+```
+python datasets/sheep/paste_and_crop_sheep.py train_data/assessor/backgrounds \
+    train_data/assessor/dataset \
+    --stamps train_data/assessor/templates/*.png \
+    --num-samples 10000 \  # number of samples to create 10,000 is a good value
+    --output-size 75 100 \  # size of the created images, in this case 75px wide and 100px high
+    --zoom-mode  # crop based on intersection over union of object and view
+```
+You could also supply the option `--base-bboxes <path to json file>`. Using this option the pasted images
+will be resized to the size of boxe that might naturally occur. Samples created with this method
+normally produce better results. You can use the bounding boxes that we created for the sheep dataset.
+You can download the fully annotated sheep dataset [here](https://bartzi.de/research/loans).
+Once you got this dataset, locate the file `train_info_single_images.json` in the directory
+`set_all/small` and provide this file as argument for `--base-bboxes`. If you want to
+emulate a larger bounding box you can add the command line argument `--enlarge-region` specifying
+with `4` digits by how many pixels each side of the bounding box shall be enlarged. The
+sides are `left, top, right, bottom`.
+The script will save all created images in the directory `train_data/assessor/dataset`.
+There you'll also find the groundtruth file `images.csv`.
+
+And you are done with creating a dataset for the assessor :tada:
+
+
+ 
