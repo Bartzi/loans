@@ -134,5 +134,66 @@ There you'll also find the groundtruth file `images.csv`.
 
 And you are done with creating a dataset for the assessor :tada:
 
+## Training the Model
 
+As we are now done with gathering all data necessary for training our model, we can now start
+the training. You might have noticed that we do not have a way to validate that the localizer
+actually generalizes well on the given train data. For this you can take the validation video,
+extract some images from there and then create a bounding box label by hand. You can also use
+the validation dataset that we already created for you. You can find the dataset
+[here](https://bartzi.de/research/loans). This page also holds the train datasets for assessor
+and localizer that you could have created by following this README.
+
+The training as such is quite easy to start. You'll have to use the script `train_sheep_localizer.py`.
+You can find this script in the root directory of this repository.
+
+You should use it like this (assume we use the same paths as before, and we have saved the validation
+datset as `train_data/localizer/validation/gt.json`):
+```
+python train_sheep_localizer.py train_data/localizer/gt.csv \  # localizer train data
+    train_data/localizer/validaton/gt.json \  # localizer validation data
+    train_data/assessor/dataset/images.csv \  # assessor train dataset
+    --target-size 100 75 \  # output size of localizer shall be 75px wide and 100px high
+    --batch-size 64 \  # set the batch size, adjust to your environment
+    --gpu 0 \  # run the training on GPU
+    --learning-rate 1e4 \  # set the learning rate to 0.0001
+    --log-name figure_skating \  # set the name of the log dir to figure_skating
+    --use-resnet-18 \  # use resnet 18 as feature extractor of localizer (omit this and resnet 50 will be used)
+```
+
+Give the training some time. If you want to inspect the train process while it is running, you
+can have a look at the subdirectory `bboxes` in the log directory. In this directory you can
+find the prediction of the trained network for every `10` iterations of the training in form
+of an image. We also provide a script that lets you directly see those images while the training
+is running. In order to do so start the script `train_utils/show_progress.py`, make sure to start
+the script before the training. If you see the error:
+```
+[Errno 111] Connection refused                                                                  
+could not connect to display server, disabling image rendering 
+```
+You can restart sending the images to the script by entering `enablebboxvis` into the terminal
+where your training is running. There is an interactive command prompt running that allows to
+issue some commands while training. You can get a list of all commands by entering `help` or having a look
+the file `commands/interactive_train.py`.
+
+### Further command line arguments for training
+
+Besides the standard command line arguments you can also add the following commands:
+- `--no-validation` do not run validation on the localizer just supply a random string instead
+of the path to the validation dataset.
+- `--image-size` resize the input images of the localizer to the given size (default is 224x224)
+- `-l` or `--log-dir` save the log file to a different log directory
+- `--num-epoch` specify the number of epochs to run
+- `--snapshot-inerval` interval in which snapshots shall be saved in iterations
+- `--no-snapshot-every-epoch` if your epochs are very short (i.e. less than 1000 iterations) you can disable
+saving a snapshot after every epoch with this argument
+- `--log-interval` interval after which number of iterations to log to the log file and stdout
+- `--port` the port used to send the current state of the network to the `show_progress` script
+- `--test-image` specify the path to an image that is to be used for progress visualization, default is to use
+the first image of the validation dataset
+- `--rl` resume the training from a saved localizer snapshot
+- `--rd` resume the training from a saved assessor snapshot
+- `--localizer-target` specify the target value the localizer shall try to reach (default is 1.0 as we want to have perfect IOU)
+- `--no-imgaug` disable the imgaug library and use a more naive ImageAugmentation strategy, very useful for training on the sheep dataset.
+  
  
