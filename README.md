@@ -6,13 +6,13 @@ You can read a Preprint on [Arxiv (TODO)](TODO).
 This page contains information on everything you need to know to train a model using our weakly supervised approach.
 In order to successfully train a model you'll need to following ingredients:
 1. a specific type of object that you want to be localized.
-2. Images that contain this object (you might also take a video of some minutes length and extract each frame).
-3. Some background images on wich the object might appear.
-4. Some template images of you object from different view points.
-5. The code from this repository.
-6. A decent GPU.
-7. ...
-8. Profit.
+1. Images that contain this object (you might also take a video of some minutes length and extract each frame).
+1. Some background images on wich the object might appear.
+1. Some template images of you object from different view points.
+1. The code from this repository.
+1. A decent GPU.
+1. ...
+1. Profit.
 
 This README will guide you through the process of training a model, using our approach.
 We will train a model that can localize a figure skater on a given image and apply the trained model
@@ -23,7 +23,7 @@ our scripts provide.
 
 In order to successfully train a model for localizing figure skater,
 we will first need to setup the code of this repository on your computer.
-Scond, we will gather some training data.
+Second, we will gather some training data.
 We will then use this data to train a model.
 After training the model, we will use some visualization scripts to have
 a look at the results of our training.
@@ -35,13 +35,13 @@ to perform the following steps:
 1. Install a Python Version `>= 3.6`. It is important to have a Python
 version that is greater than **3.6**, because the code won't work with
 older python versions.
-2. Create a new `virtualenvironment` for this code. You can use the
+1. Create a new `virtualenvironment` for this code. You can use the
 excellent [Virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/)
 for this purpose.
-3. Install all requirements with `pip install -r requirements.txt`.
-4. Make sure you have `CUDA`, `cuDNN` and if you like also `NCCL` installed.
-4. Sit back and have a coffee/tea, while `cupy` compiles.
-5. If you want to follow this README, it makes sense to install `youtube-dl`.
+1. Make sure you have `CUDA`, `cuDNN` and if you like also `NCCL` installed.
+1. Install all requirements with `pip install -r requirements.txt`.
+1. Sit back and have a coffee/tea, while `cupy` compiles.
+1. If you want to follow this README, it makes sense to install `youtube-dl`.
 
 ## Data Preparation
 
@@ -168,8 +168,8 @@ of an image. We also provide a script that lets you directly see those images wh
 is running. In order to do so start the script `train_utils/show_progress.py`, make sure to start
 the script before the training. If you see the error:
 ```
-[Errno 111] Connection refused                                                                  
-could not connect to display server, disabling image rendering 
+[Errno 111] Connection refused
+could not connect to display server, disabling image rendering
 ```
 You can restart sending the images to the script by entering `enablebboxvis` into the terminal
 where your training is running. There is an interactive command prompt running that allows to
@@ -195,5 +195,21 @@ the first image of the validation dataset
 - `--rd` resume the training from a saved assessor snapshot
 - `--localizer-target` specify the target value the localizer shall try to reach (default is 1.0 as we want to have perfect IOU)
 - `--no-imgaug` disable the imgaug library and use a more naive ImageAugmentation strategy, very useful for training on the sheep dataset.
-  
- 
+
+### Contents of the Log Folder
+
+If you have a look at the log folder that is created for each train run, you will notice the following:
+- A new log folder is created for each training. The naming scheme is as follows:
+`<timestamp>_<log_name>`. You can figure the `<log_name>` part by providing a log name during the startup
+of your training.
+- In the log folder you can find several files:
+    - `log` contains the actual train log, including configuration information
+    - `model.dot` contains a plot of the network structure, which needs to be rendered
+    by a tool like `graphviz` before being useful
+    - `updater.py` contains a copy of the updater implementation for the current train run
+    - `localizer.py` contains a copy of the localizer implementation for the current train run
+    - `discriminator.py` contains a copy of the network definition for the assessor
+    - `*.npz` contains the saved models for the given iteration
+    - `bboxes` this directory contains images showing the current state of the network on a validation sample
+
+
