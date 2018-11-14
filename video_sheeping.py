@@ -85,7 +85,7 @@ if __name__ == "__main__":
     parser.add_argument("-i", "--input_videos", nargs='+', required=True, help="path to recorded videos that shall be analyzed")
     parser.add_argument("-g", "--gpu", type=int, default=-1, help="id of gpu to use")
     parser.add_argument("-t", "--score-threshold", type=float, default=0.3, help="when to recognize a sheep")
-    parser.add_argument("--discriminator", help="path to trained discriminator that is used to predict confidence scores")
+    parser.add_argument("--assessor", help="path to trained discriminator that is used to predict confidence scores")
     parser.add_argument("-v", "--visual-backprop", action='store_true', default=False, help="render visual backprop view instead of normal view")
     parser.add_argument(
         "-o",
@@ -98,7 +98,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     localizer_class = UnsupervisedSheepLocalizer
-    localizer = localizer_class(args.model_file, args.log_file, args.gpu, discriminator=args.discriminator)
+    localizer = localizer_class(args.model_file, args.log_file, args.gpu, discriminator=args.assessor)
     localizer.score_threshold = args.score_threshold
 
     os.makedirs(args.output, exist_ok=True)

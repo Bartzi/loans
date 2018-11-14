@@ -253,3 +253,47 @@ bounding box to the saved images
 from the model it did last. If you do not want, you can reset the evaluation progress with this option.
 
 
+## Visualization of the train results
+
+Once you think that your training went well and you have a model that you would like to
+test, you can use the visualization scripts we provide.
+
+On the one hand, you can use the script `evaluate.py` with the option `--save-predictions` and
+have a look at the prediction of the model on the validation dataset.
+On the other hand you can analyse a video or still images with the scripts
+`video_sheeping.py` or `image_sheeping.py`.
+
+Lets's have a look at how to use `video_sheeping.py` with our trained model and
+the validation video of Yuna Kim that we downloaded before.
+Let's assume we saved the video of Yuna Kim as the following file:
+`validation_data/yuna_kim/video.mp4`.
+
+We could then use our trained model `SheepLocalizer_120000.npz` as follows:
+```
+python video_sheeping.py sheep_logs/2018-11-12:12:35:4_figure_skating/SheepLocalizer_120000.npz \  # path to saved model
+    sheep_logs/2018-11-12:12:35:4_figure_skating/log \  # path to log file that has all configuration information
+    -i validation_data/yuna_kim/video.mp4 \  # path to video that shall be anaylzed (you can also supply multiple paths at once)
+    -g 0 \  # gpu to use
+    -o validation_data/yuna_kim/analyzed_video.mp4  # where to save the analyzed video
+```
+
+The script also supports the following options:
+- `--assessor` supply a trained assessor model to provide a measure of how good the prediction
+of the localizer is
+- `-t` or `--score-threshold` set the threshold that determines when a prediction counts as
+a good prediction. Use this only in conjunction with the `--assessor` option
+- `-v` render a visual backprop overlay on top of each frame that visualized which parts
+of the image the network is most attracted to
+
+The next script we want to discuss is the `image_sheeping.py` script.
+Let's assume we have some `.png` images in the directory `validation_data/images` that
+we want to analyze. We can use the script like this:
+```
+python image_sheeping.py sheep_logs/2018-11-12:12:35:4_figure_skating/SheepLocalizer_120000.npz \  # path to saved model
+     sheep_logs/2018-11-12:12:35:4_figure_skating/log \  # path to log file that has all configuration information
+     -i validation_data/images/*.png \  # path to all images we want to analyze
+     -g 0 \  # the gpu to use
+     -o validation_data/images/analyzed  # where to save the analyzed images
+```
+
+
