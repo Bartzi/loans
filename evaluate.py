@@ -45,10 +45,10 @@ class Evaluator:
         localizer_class = get_class(*log_data['localizer'], args.model_dir)
         self.localizer = localizer_class(self.target_size)
 
-        if args.discriminator is not None:
+        if args.assessor is not None:
             discriminator_class = get_class(*log_data['discriminator'], args.model_dir)
             self.discriminator = discriminator_class()
-            self.load_weights(args.discriminator, self.discriminator)
+            self.load_weights(args.assessor, self.discriminator)
         else:
             self.discriminator = None
 
@@ -353,7 +353,7 @@ if __name__ == "__main__":
     parser.add_argument("--iou-threshold", type=float, default=0.5, help="iou threshold indicating if a predicted bbox is correct, based on its iou with gt [default: 0.7]")
     parser.add_argument("--save-predictions", action='store_true', default=False, help="use bbox plotter to store the predicted bboxes for every test sample")
     parser.add_argument("--deteval", action='store_true', default=False, help="produce an xml file that can be used together with the deteval tool")
-    parser.add_argument("--discriminator", help="name of discriminator to use")
+    parser.add_argument("--assessor", help="name of discriminator to use")
     parser.add_argument("--render-gt", action='store_true', default=False, help="render gt bbox into resulting image (should be used in conjunction with `save-predictions`")
     parser.add_argument("--force-reset", action='store_true', default=False, help="force a reset of eval results file")
 

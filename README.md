@@ -213,3 +213,43 @@ of your training.
     - `bboxes` this directory contains images showing the current state of the network on a validation sample
 
 
+### Evaluation of the model
+
+Once you have a model and want to see the performance on a validation dataset, you can use
+the evaluation script we provide.
+Before showing you how to use the script, let's assume that we saved the results of our training
+in the directory `sheep_logs/2018-11-12:12:35:4_figure_skating` and we want to test all snapshots,
+we also have a snapshot called `SheepLocalizer_120000.npz` in our log dir.
+If you want to evaluate your model use the `evaluate.py` script like so:
+
+```
+python evaluate.py train_data/localizer/validaton/gt.json \  # path to evaluation gt file
+    sheep_logs/2018-11-12:12:35:4_figure_skating \ # path to directory where model is saved
+    SheepLocalizer_ \  # prefix of all models that shall be tested (you can also just test one snapshot, by supplying its full name, e.g SheepLocalizer_120000`
+    -g 0 \  # the gpu to use for running evaluation (omit for using the CPU)
+```
+
+Once it is done the scipt will tell you which model is the best of all tested models.
+You will also find a file `plot.png` in the log folder that shows how the average precision
+develops over the course of all tested models.
+
+The script `evaluate.py` also supports further arguments that we describe here:
+- `--log-name` if you changed the code in such a way that the fileholding the logged information
+is not named `log` anymore you'll need to set the name here
+- `--num-samples` if you do not want to run the evaluation on all samples but just
+a subset of the validation dataset, set the number of samples here
+- `--batchsize`, or `-b` the batch size for evaluating, set the number of images to evaluate at once.
+Default is 1. **This is not guaranteed to work**
+- `--iou-threshold` set the minimum IOU that is necessary for a prediction to be counted as correct.
+Default is `0.5`
+- `--save-predictions` saves the prediction of the model for each validation sample. Is helpful
+for inspecting the weaknesses of the model. The predictions will be saved in a subdirectory called
+`eval_bboxes` that you can find in the `log dir`
+- `--assessor` specify the path to a trained assessor model that is applied after the localizer and can
+be used to inspect the quality of the assessor
+- `--render-gt` if you are using the `--save-predictions` option, this option also adds the groundtruth
+bounding box to the saved images
+- `--force-reset` if you already started an evaluation and abort it, the evaluation process will resume
+from the model it did last. If you do not want, you can reset the evaluation progress with this option.
+
+
