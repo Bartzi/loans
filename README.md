@@ -296,4 +296,38 @@ python image_sheeping.py sheep_logs/2018-11-12:12:35:4_figure_skating/SheepLocal
      -o validation_data/images/analyzed  # where to save the analyzed images
 ```
 
+This concludes our walkthrough of the options you have with our code.
 
+
+## Pretrained Models and Datasets
+
+You, of course do not need to train a model on your own. We also provide some
+pre-trained models and also links to download the datasets
+on [this](https://bartzi.de/research/loans) page.
+We provide models for our experiments with the sheep dataset and also
+for our experiments with the figure skating datasets that we described
+in this README. You can use all models with the scripts described above and
+also the datasets for training your own models
+
+## Citation
+
+In case you find our work useful, please cite our paper:
+
+```
+TODO
+```
+
+
+## License
+
+This code is licensed under the GPLv3 license, please have a look at the
+[LICENSE](https://github.com/Bartzi/loans/blob/master/LICENSE) for
+further information about the license. In case you might
+have problems with this license, please contact us and we might find a way to
+sort this out.
+
+
+## Problems or Suggestions
+
+If you have any problems or suggestions, you are invited to open an issue
+or submit a pull request to this repository.
