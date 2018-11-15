@@ -1,7 +1,7 @@
-# LoANs (Under Construction)
+# LoANs
 
 Code for the AMV18 Paper "LoANs: Weakly Supervised Object Detection with Localizer Assessor Networks".
-You can read a Preprint on [Arxiv (TODO)](TODO).
+You can read a Preprint on [Arxiv](https://arxiv.org/abs/1811.05773).
 
 This page contains information on everything you need to know to train a model using our weakly supervised approach.
 In order to successfully train a model you'll need to following ingredients:
@@ -314,7 +314,18 @@ also the datasets for training your own models
 In case you find our work useful, please cite our paper:
 
 ```
-TODO
+@article{bartz_loans_2018,
+	title = {LoANs: Weakly Supervised Object Detection with Localizer Assessor Networks},
+	copyright = {All rights reserved},
+	shorttitle = {LoANs},
+	url = {http://arxiv.org/abs/1811.05773},
+	journal = {arXiv:1811.05773 [cs]},
+	author = {Bartz, Christian and Yang, Haojin and Bethge, Joseph and Meinel, Christoph},
+	month = nov,
+	year = {2018},
+	note = {arXiv: 1811.05773},
+	keywords = {Computer Science - Computer Vision and Pattern Recognition},
+}
 ```
 
 
