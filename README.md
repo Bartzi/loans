@@ -315,16 +315,16 @@ In case you find our work useful, please cite our paper:
 
 ```
 @article{bartz_loans_2018,
-	title = {LoANs: Weakly Supervised Object Detection with Localizer Assessor Networks},
+    title = {LoANs: Weakly Supervised Object Detection with Localizer Assessor Networks},
 	copyright = {All rights reserved},
-	shorttitle = {LoANs},
-	url = {http://arxiv.org/abs/1811.05773},
-	journal = {arXiv:1811.05773 [cs]},
-	author = {Bartz, Christian and Yang, Haojin and Bethge, Joseph and Meinel, Christoph},
-	month = nov,
-	year = {2018},
-	note = {arXiv: 1811.05773},
-	keywords = {Computer Science - Computer Vision and Pattern Recognition},
+    shorttitle = {LoANs},
+    url = {http://arxiv.org/abs/1811.05773},
+    journal = {arXiv:1811.05773 [cs]},
+    author = {Bartz, Christian and Yang, Haojin and Bethge, Joseph and Meinel, Christoph},
+    month = nov,
+    year = {2018},
+    note = {arXiv: 1811.05773},
+    keywords = {Computer Science - Computer Vision and Pattern Recognition},
 }
 ```
 
