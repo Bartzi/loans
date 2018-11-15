@@ -316,7 +316,7 @@ In case you find our work useful, please cite our paper:
 ```
 @article{bartz_loans_2018,
     title = {LoANs: Weakly Supervised Object Detection with Localizer Assessor Networks},
-	copyright = {All rights reserved},
+    copyright = {All rights reserved},
     shorttitle = {LoANs},
     url = {http://arxiv.org/abs/1811.05773},
     journal = {arXiv:1811.05773 [cs]},
