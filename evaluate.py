@@ -211,7 +211,6 @@ class Evaluator:
                         rois, bboxes = self.localizer(image.copy()[None, ...])[:2]
 
                         if self.discriminator is not None:
-                            rois = F.concat(rois, axis=0)
                             class_predictions = self.discriminator(rois)
                         else:
                             class_predictions = None
