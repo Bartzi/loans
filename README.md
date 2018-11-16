@@ -8,7 +8,7 @@ In order to successfully train a model you'll need to following ingredients:
 1. a specific type of object that you want to be localized.
 1. Images that contain this object (you might also take a video of some minutes length and extract each frame).
 1. Some background images on wich the object might appear.
-1. Some template images of you object from different view points.
+1. Some template images of your object from different view points.
 1. The code from this repository.
 1. A decent GPU.
 1. ...
