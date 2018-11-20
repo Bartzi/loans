@@ -229,12 +229,12 @@ python evaluate.py train_data/localizer/validaton/gt.json \  # path to evaluatio
     -g 0 \  # the gpu to use for running evaluation (omit for using the CPU)
 ```
 
-Once it is done the scipt will tell you which model is the best of all tested models.
+Once it is done the script will tell you which model is the best of all tested models.
 You will also find a file `plot.png` in the log folder that shows how the average precision
 develops over the course of all tested models.
 
 The script `evaluate.py` also supports further arguments that we describe here:
-- `--log-name` if you changed the code in such a way that the fileholding the logged information
+- `--log-name` if you changed the code in such a way that the file holding the logged information
 is not named `log` anymore you'll need to set the name here
 - `--num-samples` if you do not want to run the evaluation on all samples but just
 a subset of the validation dataset, set the number of samples here
