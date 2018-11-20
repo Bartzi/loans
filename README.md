@@ -7,21 +7,21 @@ This page contains information on everything you need to know to train a model u
 In order to successfully train a model you'll need to following ingredients:
 1. a specific type of object that you want to be localized.
 1. Images that contain this object (you might also take a video of some minutes length and extract each frame).
-1. Some background images on wich the object might appear.
+1. Some background images on which the object might appear.
 1. Some template images of your object from different view points.
 1. The code from this repository.
 1. A decent GPU.
 1. ...
 1. Profit.
 
-This README will guide you through the process of training a model, using our approach.
+This `README` will guide you through the process of training a model, using our approach.
 We will train a model that can localize a figure skater on a given image and apply the trained model
 on a test video. While going through each step, we will provide further information on each option
 our scripts provide.
 
 # Training a model for localizing figure skaters
 
-In order to successfully train a model for localizing figure skater,
+In order to successfully train a model for localizing figure skaters,
 we will first need to setup the code of this repository on your computer.
 Second, we will gather some training data.
 We will then use this data to train a model.
@@ -62,7 +62,7 @@ We've already prepared some videos that you can download and use for training:
 For validating our model, we will use the following video:
 - [Yuna Kim](https://www.youtube.com/watch?v=hgXKJvTVW9g) (Olympic Games 2014)
 
-You can download each video with `youtube-dl` and save in a directory on your PC.
+You can download each video with `youtube-dl` and save it in a directory on your PC.
 We will assume that we downloaded all videos into a directory called `videos` that is
 located directly in the root directory of this repository. Make sure to save the
 validation video in a different spot!
@@ -121,7 +121,7 @@ python datasets/sheep/paste_and_crop_sheep.py train_data/assessor/backgrounds \
     --zoom-mode  # crop based on intersection over union of object and view
 ```
 You could also supply the option `--base-bboxes <path to json file>`. Using this option the pasted images
-will be resized to the size of boxe that might naturally occur. Samples created with this method
+will be resized to the size of boxes that might naturally occur. Samples created with this method
 normally produce better results. You can use the bounding boxes that we created for the sheep dataset.
 You can download the fully annotated sheep dataset [here](https://bartzi.de/research/loans).
 Once you got this dataset, locate the file `train_info_single_images.json` in the directory
@@ -225,7 +225,7 @@ If you want to evaluate your model use the `evaluate.py` script like so:
 ```
 python evaluate.py train_data/localizer/validaton/gt.json \  # path to evaluation gt file
     sheep_logs/2018-11-12:12:35:4_figure_skating \ # path to directory where model is saved
-    SheepLocalizer_ \  # prefix of all models that shall be tested (you can also just test one snapshot, by supplying its full name, e.g SheepLocalizer_120000`
+    SheepLocalizer_ \  # prefix of all models that shall be tested (you can also just test one snapshot, by supplying its full name, e.g SheepLocalizer_120000
     -g 0 \  # the gpu to use for running evaluation (omit for using the CPU)
 ```
 
@@ -272,7 +272,7 @@ We could then use our trained model `SheepLocalizer_120000.npz` as follows:
 ```
 python video_sheeping.py sheep_logs/2018-11-12:12:35:4_figure_skating/SheepLocalizer_120000.npz \  # path to saved model
     sheep_logs/2018-11-12:12:35:4_figure_skating/log \  # path to log file that has all configuration information
-    -i validation_data/yuna_kim/video.mp4 \  # path to video that shall be anaylzed (you can also supply multiple paths at once)
+    -i validation_data/yuna_kim/video.mp4 \  # path to video that shall be analyzed (you can also supply multiple paths at once)
     -g 0 \  # gpu to use
     -o validation_data/yuna_kim/analyzed_video.mp4  # where to save the analyzed video
 ```
@@ -282,7 +282,7 @@ The script also supports the following options:
 of the localizer is
 - `-t` or `--score-threshold` set the threshold that determines when a prediction counts as
 a good prediction. Use this only in conjunction with the `--assessor` option
-- `-v` render a visual backprop overlay on top of each frame that visualized which parts
+- `-v` render a visual backprop overlay on top of each frame that visualizes which parts
 of the image the network is most attracted to
 
 The next script we want to discuss is the `image_sheeping.py` script.
@@ -297,6 +297,13 @@ python image_sheeping.py sheep_logs/2018-11-12:12:35:4_figure_skating/SheepLocal
 ```
 
 This concludes our walkthrough of the options you have with our code.
+Have a look at some examples (click the image to see the video):
+
+Figure Skate Visualization:
+[![Nice Figure Skate Video](https://img.youtube.com/vi/bsScELGOUls/0.jpg)](https://www.youtube.com/watch?v=bsScELGOUls)
+
+Comparison of fully supervised model and our approach on sheep dataset
+[![Nice Sheep Video](https://img.youtube.com/vi/7iEqcRibVdM/0.jpg)](https://www.youtube.com/watch?v=7iEqcRibVdM)
 
 
 ## Pretrained Models and Datasets
