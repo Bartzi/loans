@@ -300,9 +300,11 @@ This concludes our walkthrough of the options you have with our code.
 Have a look at some examples (click the image to see the video):
 
 Figure Skate Visualization:
+
 [![Nice Figure Skate Video](https://img.youtube.com/vi/bsScELGOUls/0.jpg)](https://www.youtube.com/watch?v=bsScELGOUls)
 
-Comparison of fully supervised model and our approach on sheep dataset
+Comparison of fully supervised model and our approach on sheep dataset:
+
 [![Nice Sheep Video](https://img.youtube.com/vi/7iEqcRibVdM/0.jpg)](https://www.youtube.com/watch?v=7iEqcRibVdM)
 
 
