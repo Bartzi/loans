@@ -314,6 +314,10 @@ for our experiments with the figure skating datasets that we described
 in this README. You can use all models with the scripts described above and
 also the datasets for training your own models
 
+## Talk and Poster
+
+You can find the slides of our talk and the poster we presented at the "1st International Workshop on Advanced Machine Vision for Real-life and Industrially Relevant Applications", if you follow [this link](https://bartzi.de/research/loans).
+
 ## Citation
 
 In case you find our work useful, please cite our paper:
