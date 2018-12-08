@@ -56,7 +56,7 @@ def sheep(args, localizer, video_name):
                     bboxes,
                     scores,
                     scaling=scaling,
-                    render_scores=args.discriminator is not None
+                    render_scores=args.assessor is not None
                 )
             else:
                 out_image = localizer.visualize_results(
@@ -64,7 +64,7 @@ def sheep(args, localizer, video_name):
                     bboxes,
                     scores,
                     scaling=scaling,
-                    render_scores=args.discriminator is not None
+                    render_scores=args.assessor is not None
                 )
 
             if visual_backprop is not None or args.visual_backprop is False:
