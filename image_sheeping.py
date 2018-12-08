@@ -41,7 +41,7 @@ if __name__ == "__main__":
             image_as_array = np.asarray(image)
             resized_image, scaling = localizer.resize(image, is_array=False)
             processed_image = localizer.preprocess(resized_image)
-            bboxes, scores = localizer.localize(processed_image)
+            bboxes, scores = localizer.localize(processed_image)[:2]
 
             out_image = Image.fromarray(localizer.visualize_results(image_as_array, bboxes, scores, scaling=scaling))
             out_image.save(os.path.join(args.output, os.path.basename(image_path)))
