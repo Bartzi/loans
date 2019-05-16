@@ -9,8 +9,6 @@ class SheepAssessor(chainer.training.StandardUpdater):
 
     def __init__(self, *args, **kwargs):
         self.localizer, self.discriminator = kwargs.pop('models')
-        self.n_dis = kwargs.pop('n_dis')
-        self.lam = kwargs.pop('lam')
         self.anchor_iter = kwargs.pop('anchor_iter', None)
         self.create_pca = kwargs.pop('create_pca', False)
         self.n_components_pca = kwargs.pop('n_components_pca', 2)
