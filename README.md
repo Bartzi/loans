@@ -337,9 +337,7 @@ In case you find our work useful, please cite our paper:
   year      = {2018},
   url       = {https://doi.org/10.1007/978-3-030-21074-8\_29},
   doi       = {10.1007/978-3-030-21074-8\_29},
-  timestamp = {Wed, 25 Sep 2019 18:07:03 +0200},
-  biburl    = {https://dblp.org/rec/conf/accv/BartzYBM18.bib},
-  bibsource = {dblp computer science bibliography, https://dblp.org}
+  timestamp = {Wed, 25 Sep 2019 18:07:03 +0200}
 }
 ```
 
