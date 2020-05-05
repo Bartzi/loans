@@ -323,17 +323,23 @@ You can find the slides of our talk and the poster we presented at the "1st Inte
 In case you find our work useful, please cite our paper:
 
 ```
-@article{bartz_loans_2018,
-    title = {LoANs: Weakly Supervised Object Detection with Localizer Assessor Networks},
-    copyright = {All rights reserved},
-    shorttitle = {LoANs},
-    url = {http://arxiv.org/abs/1811.05773},
-    journal = {arXiv:1811.05773 [cs]},
-    author = {Bartz, Christian and Yang, Haojin and Bethge, Joseph and Meinel, Christoph},
-    month = nov,
-    year = {2018},
-    note = {arXiv: 1811.05773},
-    keywords = {Computer Science - Computer Vision and Pattern Recognition},
+@inproceedings{DBLP:conf/accv/BartzYBM18,
+  author    = {Christian Bartz and
+               Haojin Yang and
+               Joseph Bethge and
+               Christoph Meinel},
+  title     = {LoANs: Weakly Supervised Object Detection with Localizer Assessor
+               Networks},
+  booktitle = {Computer Vision - {ACCV} 2018 Workshops - 14th Asian Conference on
+               Computer Vision, Perth, Australia, December 2-6, 2018, Revised Selected
+               Papers},
+  pages     = {341--356},
+  year      = {2018},
+  url       = {https://doi.org/10.1007/978-3-030-21074-8\_29},
+  doi       = {10.1007/978-3-030-21074-8\_29},
+  timestamp = {Wed, 25 Sep 2019 18:07:03 +0200},
+  biburl    = {https://dblp.org/rec/conf/accv/BartzYBM18.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
 }
 ```
 
