@@ -3,6 +3,6 @@ chainercv==0.9.0
 cupy==4.0.0
 numpy==1.14.2
 opencv-python>=3.4.0.12
-Pillow==5.1.0
+Pillow==8.1.1
 simpleaudio==1.0.2
 tqdm==4.23.1
